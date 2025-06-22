@@ -1,6 +1,7 @@
-const si = require("systeminformation");
+const si = require('systeminformation');
 
-exports.getStorageInfo = () => {
-  const storage = si.fsSize();
-  return storage;
+exports.getStorageInfo = async () => {
+	const storage = await si.fsSize();
+	const filtered = storage.filter((s) => s.rw !== false);
+	return filtered;
 };
